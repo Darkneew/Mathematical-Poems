@@ -1,0 +1,144 @@
+Copyright (c) 2026 Léo Buisine
+
+All rights reserved.
+
+1. DEFINITIONS
+
+"Licensed Material" means the software, source code, compiled code,
+documentation, and all literary content made available under this License,
+including but not limited to poems and associated metadata.
+
+"Literary Content" means any textual or artistic work included in the Licensed
+Material, including poems authored by the Licensor or third parties.
+
+"Use" means to access, view, read, or privately interact with the Licensed
+Material.
+
+"Internal Use" means use by a single natural person or within a single legal
+entity, strictly for its own internal purposes and not for the benefit of any
+third party.
+
+"Academic Purpose" means non-commercial scholarly research, teaching, or
+publication conducted within a recognized academic or educational context,
+and not primarily intended for or directed toward commercial advantage or
+monetary compensation.
+
+"Text and Data Mining" or "TDM" means any automated analytical technique
+aimed at analyzing text, data, or patterns, including but not limited to
+scraping, parsing, tokenizing, embedding, indexing, or transforming the
+Licensed Material for the purpose of extracting information or training
+computational models.
+
+"Machine Learning" or "ML" means any computational process that uses data to
+train, fine-tune, evaluate, or improve models, including but not limited to
+artificial intelligence systems, neural networks, or statistical learning
+algorithms.
+
+2. GRANT OF RIGHTS
+
+Subject to the terms and conditions of this License, the Licensor grants you
+a limited, non-exclusive, non-transferable, non-sublicensable, revocable
+license to:
+
+(a) Use, reproduce, and modify the software components of the Licensed
+    Material solely for Internal Use and strictly non-commercial purposes;
+
+(b) Access and read the Literary Content for personal or Internal Use;
+
+(c) Use the Licensed Material for Academic Purposes, subject to compliance
+    with Section 5 (Academic Citation and Quotation).
+
+3. GENERAL RESTRICTIONS
+
+Except as expressly permitted under this License, you shall not:
+
+(a) Distribute, publish, transmit, sublicense, rent, lease, lend, or otherwise
+    make the Licensed Material, in whole or in part, available to any third
+    party;
+
+(b) Make the Licensed Material accessible to the public or to any persons
+    outside the scope of Internal Use, including via any network service,
+    hosted environment, or shared platform;
+
+(c) Use the Licensed Material for any commercial purpose, including but not
+    limited to sale, licensing, advertising, or integration into any
+    revenue-generating product or service;
+
+(d) Reproduce, distribute, publicly display, or otherwise exploit any
+    Literary Content, except as expressly permitted under Section 5;
+
+(e) Remove, alter, or obscure any copyright, attribution, or proprietary
+    notices.
+
+4. PROHIBITION OF TEXT AND DATA MINING AND MACHINE LEARNING USE
+
+Without limitation of Section 3, you shall not, and shall not permit any third
+party to:
+
+(a) Perform any Text and Data Mining (TDM) activities on the Licensed Material;
+
+(b) Use the Licensed Material, in whole or in part, as input to, or for the
+    development, training, fine-tuning, evaluation, or validation of, any
+    Machine Learning or artificial intelligence system;
+
+(c) Extract, scrape, download, or otherwise collect the Literary Content for
+    purposes of building datasets, corpora, or training materials;
+
+(d) Create embeddings, vector representations, or derivative datasets based
+    on the Literary Content.
+
+These prohibitions apply regardless of whether such activities are conducted
+for commercial or non-commercial purposes.
+
+5. ACADEMIC CITATION AND QUOTATION
+
+Notwithstanding the foregoing, you may include limited excerpts of the
+Licensed Material in works created for Academic Purposes, provided that:
+
+(a) Such excerpts are reasonable in length and do not constitute a substantial
+    portion of any individual poem or literary work;
+
+(b) The use is strictly for purposes of criticism, commentary, or scholarly
+    analysis;
+
+(c) Proper attribution is given to the Licensor and, where applicable, the
+    original authors;
+
+(d) The excerpts do not substitute for access to the original works and do not
+    diminish their expressive or economic value;
+
+(e) No systematic or large-scale extraction of Literary Content is performed.
+
+For the avoidance of doubt, reproduction of complete poems or substantial
+parts thereof is strictly prohibited without prior written authorization.
+
+6. OWNERSHIP
+
+The Licensed Material is licensed, not sold. All rights, title, and interest
+in and to the Licensed Material, including all intellectual property rights,
+remain with the Licensor and, where applicable, the respective authors of
+the Literary Content.
+
+7. TERMINATION
+
+This License shall automatically terminate upon any breach of its terms.
+Upon termination, you must immediately cease all use of the Licensed Material
+and destroy all copies in your possession or control.
+
+8. NO WARRANTY
+
+THE LICENSED MATERIAL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+9. LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL THE LICENSOR OR ANY COPYRIGHT HOLDER BE LIABLE FOR ANY
+CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT,
+OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE LICENSED
+MATERIAL OR THE USE OR OTHER DEALINGS IN THE LICENSED MATERIAL.
+
+10. GOVERNING LAW
+
+This License shall be governed by and construed in accordance with the laws
+of France, without regard to its conflict of laws principles.

@@ -1,0 +1,347 @@
+/* made using a template: Template 2097 Pop https://www.tooplate.com/view/2097-pop */
+
+:root {
+  --filter: rgba(0, 0, 0, 0.7);
+  --quatr-color: rgb(210, 50, 60);
+  --tertiary-color: rgb(170, 20, 30);
+  --primary-color: rgb(130, 10, 20);
+  --secondary-color: rgb(80, 0, 10);
+  --button: rgba(30, 30, 30, 0.7);
+  --details: rgb(15, 15, 15);
+  --form: rgb(40, 40, 40);
+  --form-focus: rgb(50, 50, 50);
+  --button-text: whitesmoke;
+}
+
+body {
+  background-color: black;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 300;
+  color: white;
+  position: relative;
+  overflow: auto;
+}
+
+a {
+  color: var(--tertiary-color)
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--form);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--form-focus);
+
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Background */
+#main-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/assets/misc/background.webp');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+#bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--filter);
+  z-index: -1;
+}
+
+/* Container for top tabs (Main Page) */
+.top-tabs-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 10;
+}
+
+/* Container for floating top right buttons (Legal Page) */
+.top-left-floating {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+/* Base button styles */
+.nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 4px;
+}
+
+/* specific style for tabs */
+.nav-tab {
+  border-top: none;
+  border-radius: 0 0 15px 15px;
+  width: 55px;
+  height: 50px;
+  transform-origin: top center;
+}
+
+.nav-tab:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scaleY(1.1) scaleX(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.nav-tab:active {
+  transform: scaleY(1.05) scaleX(1.02);
+}
+
+/* specific style for floating orbs */
+.nav-orb {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.nav-orb:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.nav-orb:active {
+  transform: translateY(1px);
+}
+
+/* Bottom Links and Credits */
+.bottom-left-links {
+  position: fixed;
+  bottom: 20px;
+  left: 40px;
+  z-index: 10;
+}
+
+.bottom-left-links a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.bottom-left-links a:hover {
+  color: white;
+}
+
+.bottom-right-credits {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  z-index: 10;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* Modal Window */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-container {
+  background: var(--details);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
+  padding: 50px 40px;
+  position: relative;
+  overflow-y: auto;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  z-index: 1001;
+}
+
+.modal-close:hover {
+  color: white;
+  transform: rotate(90deg);
+}
+
+.poem-modal-content {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Custom Scrollbar for Modal Container */
+.modal-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.modal-container::-webkit-scrollbar-thumb {
+  background-color: var(--form);
+  border-radius: 10px;
+  border: 3px solid var(--details);
+}
+
+.modal-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--form-focus);
+}
+
+.modal-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------------------------------
+   Graph Container & Elements
+--------------------------------- */
+#graph-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  /* Below top buttons (10) and modal (1000) */
+  overflow: hidden;
+}
+
+/* Edges Layer (SVG) */
+.graph-edges-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  /* Let clicks pass through to nodes/background */
+}
+
+/* Graph Nodes */
+.graph-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  /* Center the node exactly on its coordinates */
+  background: rgba(100, 100, 100, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  padding: 12px;
+  /* Margin between border and image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 3;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, width 0.4s ease, height 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.graph-node img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  /* Let the button handle clicks */
+  transition: opacity 0.3s ease;
+}
+
+.graph-node:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+.graph-node:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
+.graph-node:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  background: rgba(170, 20, 30, 0.8);
+  /* Darker tertiary color on hover */
+  border-color: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description"
+        content="Discover the mathematical landscape through the lense of poetry, with the help of these mathematical poems written by multiple people from different horizons.">
+    <meta name="author" content="Leo Buisine">
+    <meta name="theme-color" content="#d43a25">
+
+    <title>Mathematical Poetry</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <style>
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/misc/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/misc/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/misc/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/misc/favicon-48x48.png">
+
+    <!-- Apple -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/misc/apple-touch-icon.png">
+
+    <!-- Android / PWA -->
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Open Graph Tags -->
+    <meta property="og:site_name" content="Mathematical Poetry">
+    <meta property="og:title" content="Mathematical Poetry">
+    <meta property="og:description"
+        content="Discover the mathematical landscape through the lense of poetry, with the help of these mathematical poems written by multiple people from different horizons.">
+    <meta property="og:image" content="https://www.eleves.ens.fr/home/lbuisine/assets/misc/icon.webp">
+    <meta property="og:url" content="https://www.eleves.ens.fr/home/lbuisine/">
+    <meta property="og:type" content="website">
+
+    <!-- Schema.org Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mathematical Poetry",
+      "url": "https://www.eleves.ens.fr/home/lbuisine/",
+      "logo": "https://www.eleves.ens.fr/home/lbuisine/assets/misc/icon.webp"
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Background -->
+    <div id="main-bg"></div>
+    <div id="bg-overlay"></div>
+
+    <main>
+        <!-- Top Navigation Buttons -->
+        <div class="top-tabs-container">
+            <button id="btn-list" class="nav-btn nav-tab" aria-label="List of poems" title="List of poems">
+                <i class="bi bi-list"></i>
+            </button>
+            <button id="btn-random" class="nav-btn nav-tab" aria-label="Random poem" title="Random poem">
+                <i class="bi bi-dice-5"></i>
+            </button>
+        </div>
+
+        <!-- Main Graph Container -->
+        <div id="graph-container">
+            <svg id="graph-edges" class="graph-edges-layer" width="100%" height="100%">
+                <!-- Edge connecting Node 1 and Node 2 -->
+                <line x1="40%" y1="40%" x2="60%" y2="60%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
+                <line x1="15%" y1="80%" x2="60%" y2="60%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
+                <line x1="40%" y1="40%" x2="80%" y2="30%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
+                <line x1="40%" y1="40%" x2="10%" y2="20%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
+            </svg>
+
+            <button class="graph-node" style="left: 40%; top: 40%;" aria-label="Poem: Pythagorean triple">
+                <img src="/assets/latex/webp/pythagorean.webp" alt="Pythagorean triple">
+            </button>
+
+            <button class="graph-node" style="left: 10%; top: 20%;"
+                aria-label="Poem: Landau-Lifshitz-Gilbert-Slonczewski equation">
+                <img src="/assets/latex/webp/landau.webp" alt="Magnetization dynamics">
+            </button>
+
+            <button class="graph-node" style="left: 80%; top: 30%;" aria-label="Poem: Fundamental group">
+                <img src="/assets/latex/webp/groupefonda.webp" alt="Fundamental group">
+            </button>
+
+            <button class="graph-node" style="left: 60%; top: 60%;" aria-label="Poem: Toda field theory">
+                <img src="/assets/latex/webp/toda.webp" alt="Toda Lagrangian">
+            </button>
+
+            <button class="graph-node" style="left: 15%; top: 80%;" aria-label="Poem: Induction">
+                <img src="/assets/latex/webp/induction.webp" alt="Induction">
+            </button>
+        </div>
+    </main>
+
+    <!-- Modal Window -->
+    <div id="poem-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close modal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="poem-modal-content" id="poem-modal-content">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="bottom-left-links">
+            <a href="/legal/index.html">Legal Mentions</a>
+        </div>
+        <div class="bottom-right-credits">
+            Background image by Michaël Klopfenstein
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="/js/script.js"></script>
+    <script src="/js/bootstrap.min.js" defer></script>
+</body>
+
+</html>
