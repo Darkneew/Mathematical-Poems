@@ -124,9 +124,9 @@ function getTranslatedPoemHTML(poem) {
                 </div>
             </div>
             <div class="col-12 text-center mt-4">
-                <button class="poem-meta-btn">
+                <a href="#" onclick="window.revealObject(event, this, '${poem.translatedObject}', '${poem.translatedWikipedia}')" class="poem-meta-btn">
                     <i class="bi bi-lightbulb"></i> <span style="flex-grow: 1; text-align: center;">?</span>
-                </button>
+                </a>
             </div>
         </div>
         ${extra}
@@ -157,9 +157,9 @@ function getOriginalPoemHTML(poem) {
                 </div>
             </div>
             <div class="col-12 text-center mt-4">
-                <button class="poem-meta-btn">
+                <a href="#" onclick="window.revealObject(event, this, '${poem.object}', '${poem.wikipedia}')" class="poem-meta-btn">
                     <i class="bi bi-lightbulb"></i> <span style="flex-grow: 1; text-align: center;">?</span>
-                </button>
+                </a>
             </div>
         </div>
         ${extra}
@@ -172,6 +172,62 @@ function translatePoem(isTranslated, id) {
         if (isTranslated) changeModal(getOriginalPoemHTML(poem))
         else changeModal(getTranslatedPoemHTML(poem));
     })
+};
+
+window.revealObject = function(event, element, object, link) {
+    event.preventDefault(); // Stop the first click from navigating
+    element.onclick = null; 
+    
+    const span = element.querySelector('span');
+    if (span) {
+        // Measure current size
+        const currentWidth = element.offsetWidth;
+        const currentHeight = element.offsetHeight;
+        
+        // Lock both dimensions and prevent invisible text spilling
+        element.style.width = currentWidth + 'px';
+        element.style.height = currentHeight + 'px';
+        element.style.overflow = 'hidden';
+        
+        // Fade out ?
+        span.style.transition = 'opacity 0.15s ease';
+        span.style.opacity = '0';
+        
+        setTimeout(() => {
+            // MEASURE PHASE: swap text, disable transitions, measure natural layout
+            span.innerText = object;
+            element.style.transition = 'none';
+            element.style.width = 'auto';
+            element.style.height = 'auto';
+            const newWidth = element.offsetWidth;
+            const newHeight = element.offsetHeight;
+            
+            // RESET PHASE: snap back to small size
+            element.style.width = currentWidth + 'px';
+            element.style.height = currentHeight + 'px';
+            void element.offsetWidth; // Force reflow
+            
+            // ANIMATE PHASE: restore transitions, trigger resize
+            element.style.transition = '';
+            element.style.width = newWidth + 'px';
+            element.style.height = newHeight + 'px';
+            
+            // SUSPENSE PHASE: Wait for box to finish resizing (300ms) before fading in text
+            setTimeout(() => {
+                // Activate the link functionality now that the text is revealed
+                element.href = link;
+                element.target = "_blank";
+                element.rel = "noopener noreferrer";    
+                
+                span.style.opacity = '1'; 
+                
+                element.style.width = '';
+                element.style.height = '';
+                element.style.overflow = '';
+                span.style.transition = '';
+            }, 300); // 300ms matches the CSS transition duration for .poem-meta-btn
+        }, 150); // Wait for the ? to finish fading out
+    }
 };
 
 function addPoem(poem) {
