@@ -479,3 +479,69 @@ a {
   text-decoration: none !important;
   color: white !important;
 }
+
+.poem-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.poem-list-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  text-align: left;
+  width: 100%;
+}
+
+.poem-list-item:hover, 
+.poem-list-item:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.poem-list-content {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-grow: 1;
+  padding-right: 20px;
+}
+
+.poem-list-title {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.poem-list-author {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.poem-list-arrow {
+  color: var(--tertiary-color, #fff);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.poem-list-item:hover .poem-list-arrow,
+.poem-list-item:focus .poem-list-arrow {
+  transform: translateX(5px);
+}

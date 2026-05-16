@@ -75,22 +75,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// TOP BUTTONS 
-const btnList = document.getElementById('btn-list');
-const btnRandom = document.getElementById('btn-random');
-
-if (btnList) {
-    btnList.addEventListener('click', () => {
-        return;
-    });
-};
-if (btnRandom) {
-    btnRandom.addEventListener('click', () => {
-        return;
-    });
-};
-
-
 // GRAPH OF POEMS
 const graph = document.getElementById("graph-container");
 const edges = document.getElementById("graph-edges");
@@ -268,4 +252,38 @@ function addPoem(poem) {
 
 window.onload = () => {
     POEMS.forEach((poem) => addPoem(poem));
+};
+
+
+// TOP BUTTONS 
+const btnList = document.getElementById('btn-list');
+const btnRandom = document.getElementById('btn-random');
+
+function openPoem(id) {
+    POEMS.forEach((poem) => {
+        if (poem.id != id) return;
+        openModal(getOriginalPoemHTML(poem))
+    })
+};
+
+if (btnList) {
+    btnList.addEventListener('click', () => {
+        openModal(`
+            <h3 class="text-center mb-5" style="color: white; font-weight: 300; letter-spacing: 2px;">POEM COLLECTION</h3>
+            <div class="poem-list-container">
+                ${POEMS.map((poem) => `
+                    <button class="poem-list-item" onclick="openPoem('${poem.id}')">
+                        <div class="poem-list-content">
+                            <span class="poem-list-title">${poem.translatedObject}</span>
+                            <span class="poem-list-author"><i class="bi bi-person-fill"></i> ${poem.author}</span>
+                        </div>
+                        <i class="bi bi-chevron-right poem-list-arrow"></i>
+                    </button>
+                `).sort(() => Math.random() - 0.5).join("")}
+            </div>
+        `);
+    });
+};
+if (btnRandom) {
+    btnRandom.addEventListener('click', () => openModal(getOriginalPoemHTML(POEMS[Math.floor(Math.random()*POEMS.length)])));
 };
