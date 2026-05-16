@@ -223,6 +223,17 @@ a {
   transform: translateY(0) scale(1);
 }
 
+#poem-modal-content {
+  transition: height 0.3s ease, opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+#poem-modal-content.transitioning {
+  opacity: 0;
+  transform: scale(0.98) translateY(10px);
+}
+
 .modal-close {
   position: absolute;
   top: 15px;
@@ -344,4 +355,117 @@ a {
   background: rgba(170, 20, 30, 0.8);
   /* Darker tertiary color on hover */
   border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Modal Specific Custom Scrollbar */
+.modal-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.modal-container::-webkit-scrollbar-track {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+
+.modal-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.modal-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Poem Modal Interactive Elements */
+.poem-translate-btn {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  color: white;
+  padding: 8px 30px;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.poem-translate-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.poem-translate-btn:active {
+  transform: translateY(1px);
+}
+
+.poem-text {
+  white-space: pre-line;
+  font-size: 1.15rem;
+  line-height: 2.2;
+  text-align: left;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+
+.poem-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.poem-meta-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.poem-meta-text i {
+  color: var(--tertiary-color);
+  font-size: 1.1rem;
+}
+
+.poem-meta-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  color: white;
+  padding: 8px 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 160px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.poem-meta-btn i {
+  color: #ffd700;
+  font-size: 1.1rem;
+}
+
+.poem-meta-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.poem-meta-btn:active {
+  transform: translateY(1px);
 }

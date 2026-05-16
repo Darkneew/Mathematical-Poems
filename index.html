@@ -73,34 +73,7 @@
 
         <!-- Main Graph Container -->
         <div id="graph-container">
-            <svg id="graph-edges" class="graph-edges-layer" width="100%" height="100%">
-                <!-- Edge connecting Node 1 and Node 2 -->
-                <line x1="40%" y1="40%" x2="60%" y2="60%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
-                <line x1="15%" y1="80%" x2="60%" y2="60%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
-                <line x1="40%" y1="40%" x2="80%" y2="30%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
-                <line x1="40%" y1="40%" x2="10%" y2="20%" stroke="rgba(255,255,255,0.4)" stroke-width="2" />
-            </svg>
-
-            <button class="graph-node" style="left: 40%; top: 40%;" aria-label="Poem: Pythagorean triple">
-                <img src="/assets/latex/webp/pythagorean.webp" alt="Pythagorean triple">
-            </button>
-
-            <button class="graph-node" style="left: 10%; top: 20%;"
-                aria-label="Poem: Landau-Lifshitz-Gilbert-Slonczewski equation">
-                <img src="/assets/latex/webp/landau.webp" alt="Magnetization dynamics">
-            </button>
-
-            <button class="graph-node" style="left: 80%; top: 30%;" aria-label="Poem: Fundamental group">
-                <img src="/assets/latex/webp/groupefonda.webp" alt="Fundamental group">
-            </button>
-
-            <button class="graph-node" style="left: 60%; top: 60%;" aria-label="Poem: Toda field theory">
-                <img src="/assets/latex/webp/toda.webp" alt="Toda Lagrangian">
-            </button>
-
-            <button class="graph-node" style="left: 15%; top: 80%;" aria-label="Poem: Induction">
-                <img src="/assets/latex/webp/induction.webp" alt="Induction">
-            </button>
+            <svg id="graph-edges" class="graph-edges-layer" width="100%" height="100%"></svg>
         </div>
     </main>
 
@@ -126,6 +99,7 @@
     </footer>
 
     <!-- JAVASCRIPT FILES -->
+    <script src="/js/db.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/bootstrap.min.js" defer></script>
 </body>

@@ -1,126 +1,215 @@
+// MODAL WINDOW 
 const modalOverlay = document.getElementById('poem-modal');
 const modalContent = document.getElementById('poem-modal-content');
 const modalClose = document.querySelector('.modal-close');
 
-// Buttons for testing the modal (from the top navigation)
-const btnList = document.getElementById('btn-list');
-const btnRandom = document.getElementById('btn-random');
-
-/**
- * Opens the modal and injects the given HTML content.
- * @param {string} contentHtml - The HTML content to display inside the modal.
- */
 function openModal(contentHtml) {
     if (!modalOverlay || !modalContent) return;
-
     modalContent.innerHTML = contentHtml;
     modalOverlay.classList.add('active');
-
     // Prevent background scrolling while modal is open
     document.body.style.overflow = 'hidden';
 }
 
-/**
- * Closes the modal.
- */
+function changeModal(newContentHtml) {
+    if (!modalContent) return;
+    
+    // Lock current height and overflow to prepare for smooth height transition
+    const currentHeight = modalContent.offsetHeight;
+    modalContent.style.height = currentHeight + 'px';
+    modalContent.style.overflow = 'hidden';
+
+    modalContent.classList.add('transitioning');
+    
+    setTimeout(() => {
+        const modalContainer = modalContent.parentElement;
+        if (modalContainer) {
+            modalContainer.scrollTop = 0;
+        }
+        modalContent.innerHTML = newContentHtml;
+        
+        // Measure new height without scaling interference
+        modalContent.style.height = 'auto';
+        const newHeight = modalContent.offsetHeight;
+        
+        // Re-apply old height, force reflow, then trigger height animation
+        modalContent.style.height = currentHeight + 'px';
+        void modalContent.offsetHeight; // Force reflow
+        
+        modalContent.style.height = newHeight + 'px';
+        modalContent.classList.remove('transitioning');
+
+        // Cleanup inline styles after animation finishes
+        setTimeout(() => {
+            modalContent.style.height = '';
+            modalContent.style.overflow = '';
+        }, 300);
+    }, 300); // Match CSS transition duration
+}
+
+
 function closeModal() {
     if (!modalOverlay) return;
-
     modalOverlay.classList.remove('active');
-
-    // Restore background scrolling
     document.body.style.overflow = '';
-
-    // Optional: Clear content after closing to stop any media playing, etc.
     setTimeout(() => {
         if (!modalOverlay.classList.contains('active')) {
             modalContent.innerHTML = '';
         }
     }, 400); // Wait for transition to finish
 }
-
-// Event Listeners for Closing
 if (modalClose) {
     modalClose.addEventListener('click', closeModal);
 }
-
 if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
-        // Only close if clicking on the overlay itself, not the container
         if (e.target === modalOverlay) {
             closeModal();
         }
     });
 }
-
-// Close on Escape key press
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
         closeModal();
     }
 });
 
-// ----------------------------------------------------
-// Testing Example: Hooking up the top buttons
-// ----------------------------------------------------
+
+// TOP BUTTONS 
+const btnList = document.getElementById('btn-list');
+const btnRandom = document.getElementById('btn-random');
+
 if (btnList) {
     btnList.addEventListener('click', () => {
-        openModal(`
-            <h2 class="text-center mb-4">Poem List</h2>
-            <p class="text-center">
-                A directory of all available poems will be displayed here.<br>
-                For now, this is just placeholder text.
-            </p>
-        `);
+        return;
     });
-}
-
+};
 if (btnRandom) {
     btnRandom.addEventListener('click', () => {
-        openModal(`
-            <h2 class="text-center mb-4">Random Poem</h2>
-            <p style="white-space: pre-line; text-align: center;">
-                A random
-                poem is
-                Here and thereafter
-            </p>
-            <p class="text-end mt-4">
-                — Random person
-            </p>
-        `);
+        return;
     });
-}
-
-// ----------------------------------------------------
-// Graph Nodes Auto-Sizing based on Image Aspect Ratio
-// ----------------------------------------------------
-function adjustNodeSize(img) {
-    const node = img.closest('.graph-node');
-    if (!node) return;
-
-    const w = img.naturalWidth;
-    const h = img.naturalHeight;
-    if (!w || !h) return;
-
-    // Calculate aspect ratio (how far it is from a square)
-    // ratio >= 1. A square is 1. Wide is > 1. Tall is > 1.
-    const ratio = Math.max(w / h, h / w);
+};
 
 
-    // Calculate final size, bounded between 75px and 150px
-    const finalSize = Math.min(50 + ratio * 25, 150);
+// GRAPH OF POEMS
+const graph = document.getElementById("graph-container");
+const edges = document.getElementById("graph-edges");
 
-    node.style.width = `${finalSize}px`;
-    node.style.height = `${finalSize}px`;
+function getTranslatedPoemHTML(poem) {
+    const content = poem.isImage ? `<img src="${poem.translatedText}" alt="Poem: ${poem.translatedObject}" class="img-fluid poem-image">` : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.translatedText}</p></div>`;
+    const extra = poem.image ? `<div class="mt-5 w-100"> <img src="${poem.image}" alt="Image: ${poem.translatedObject}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${poem.imageCredit} </p> </div>` : "";
+    return `
+        <div class="row mb-5">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <button class="poem-translate-btn" onclick="translatePoem(true, '${poem.id}')">
+                    View Original
+                </button>
+            </div>
+            <div class="col-2"></div>
+        </div>
 
-    node.style.padding = `${40 - Math.min(2, ratio) * 15}px`;
-}
+        <div class="poem-body mb-5 text-center">
+            ${content}
+        </div>
+        <div class="row mt-4 pt-3">
+            <div class="col-12">
+                <div class="poem-meta-text">
+                    <i class="bi bi-person-fill"></i> ${poem.author}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="poem-meta-text">
+                    <i class="bi bi-translate"></i> ${poem.translator}
+                </div>
+            </div>
+            <div class="col-12 text-center mt-4">
+                <button class="poem-meta-btn">
+                    <i class="bi bi-lightbulb"></i> <span style="flex-grow: 1; text-align: center;">?</span>
+                </button>
+            </div>
+        </div>
+        ${extra}
+    `;
+};
 
-// Run adjustment for all node images
-document.querySelectorAll('.graph-node img').forEach(img => {
-    if (img.complete) {
-        adjustNodeSize(img);
-    } else {
-        img.addEventListener('load', () => adjustNodeSize(img));
-    }
-});
+function getOriginalPoemHTML(poem) {
+    const content = poem.isImage ? `<img src="${poem.text}" alt="Poem: ${poem.object}" class="img-fluid poem-image">` : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.text}</p></div>`;
+    const extra = poem.image ? `<div class="mt-5 w-100"> <img src="${poem.image}" alt="Image: ${poem.object}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${poem.imageCredit} </p> </div>` : "";
+    return `
+        <div class="row mb-5">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <button class="poem-translate-btn" onclick="translatePoem(false, '${poem.id}')">
+                    Translate
+                </button>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+        <div class="poem-body mb-5 text-center">
+            ${content}
+        </div>
+        <div class="row mt-4 pt-3">
+            <div class="col-12">
+                <div class="poem-meta-text">
+                    <i class="bi bi-person-fill"></i> ${poem.author}
+                </div>
+            </div>
+            <div class="col-12 text-center mt-4">
+                <button class="poem-meta-btn">
+                    <i class="bi bi-lightbulb"></i> <span style="flex-grow: 1; text-align: center;">?</span>
+                </button>
+            </div>
+        </div>
+        ${extra}
+    `;
+};
+
+function translatePoem(isTranslated, id) {
+    POEMS.forEach((poem) => {
+        if (poem.id != id) return;
+        if (isTranslated) changeModal(getOriginalPoemHTML(poem))
+        else changeModal(getTranslatedPoemHTML(poem));
+    })
+};
+
+function addPoem(poem) {
+    let node = document.createElement("button");
+    node.classList = "graph-node";
+    node.style.left = `${poem.position.x}%`;
+    node.style.top = `${poem.position.y}%`;
+    node.ariaLabel = `Poem: ${poem.object}`;
+    let icon = document.createElement("img")
+    icon.alt = poem.object;
+    icon.addEventListener('load', () => {
+        const ratio = Math.max(icon.naturalWidth / icon.naturalHeight, icon.naturalHeight / icon.naturalWidth);
+        // Calculate final size, bounded between 75px and 150px
+        const finalSize = Math.min(50 + ratio * 25, 150);
+        node.style.width = `${finalSize}px`;
+        node.style.height = `${finalSize}px`;
+        node.style.padding = `${40 - Math.min(2, ratio) * 15}px`;
+    });
+    icon.src = poem.icon;
+    node.appendChild(icon);
+    node.addEventListener('click', () => openModal(getOriginalPoemHTML(poem)));
+    graph.appendChild(node);
+    poem.edges.forEach((edge) => {
+        POEMS.forEach((_poem) => {
+            if (_poem.id != edge) return;
+            let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", `${poem.position.x}%`);
+            line.setAttribute("y1", `${poem.position.y}%`);
+            line.setAttribute("x2", `${_poem.position.x}%`);
+            line.setAttribute("y2", `${_poem.position.y}%`);
+            line.setAttribute("stroke", "rgba(255,255,255,0.4)");
+            line.setAttribute("stroke-width", "2");
+            edges.appendChild(line);
+        });
+    });
+};
+
+
+window.onload = () => {
+    POEMS.forEach((poem) => addPoem(poem));
+};
