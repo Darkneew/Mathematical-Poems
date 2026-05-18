@@ -6,6 +6,10 @@ const modalClose = document.querySelector('.modal-close');
 function openModal(contentHtml) {
     if (!modalOverlay || !modalContent) return;
     modalContent.innerHTML = contentHtml;
+    const modalContainer = modalContent.parentElement;
+    if (modalContainer) {
+        modalContainer.scrollTop = 0;
+    }
     modalOverlay.classList.add('active');
     // Prevent background scrolling while modal is open
     document.body.style.overflow = 'hidden';
@@ -311,10 +315,12 @@ const btnList = document.getElementById('btn-list');
 const btnRandom = document.getElementById('btn-random');
 
 function openPoem(id) {
+    closeModal();
+    setTimeout(() =>
     POEMS.forEach((poem) => {
         if (poem.id != id) return;
         openModal(getOriginalPoemHTML(poem))
-    })
+    }),150);
 };
 
 if (btnList) {
