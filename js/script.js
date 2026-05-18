@@ -214,21 +214,32 @@ window.revealObject = function(event, element, object, link) {
     }
 };
 
+function graphCoordinateX(x) {
+    return `${(PARAMETERS.shift.x + x)*10/(100+PARAMETERS.shift.x/10)}%`
+}
+function graphCoordinateY(y) {
+    return `${(PARAMETERS.shift.y + y)*10/PARAMETERS.graphRatio/(100+PARAMETERS.shift.y/10)}%`
+}
+
 function addPoem(poem) {
     let node = document.createElement("button");
     node.classList = "graph-node";
-    node.style.left = `${poem.position.x}%`;
-    node.style.top = `${poem.position.y}%`;
+    node.style.left = graphCoordinateX(poem.position.x);
+    node.style.top = graphCoordinateY(poem.position.y);
     node.ariaLabel = `Poem: ${poem.object}`;
     let icon = document.createElement("img")
     icon.alt = poem.object;
     icon.addEventListener('load', () => {
         const ratio = Math.max(icon.naturalWidth / icon.naturalHeight, icon.naturalHeight / icon.naturalWidth);
         // Calculate final size, bounded between 75px and 150px
-        const finalSize = Math.min(50 + ratio * 25, 150);
-        node.style.width = `${finalSize}px`;
-        node.style.height = `${finalSize}px`;
-        node.style.padding = `${40 - Math.min(2, ratio) * 15}px`;
+        const finalSize = Math.min(80 + ratio * 15, 130)/17;
+        const padding = (40 - Math.min(2, ratio) * 15)/17;
+        node.style.width = `${finalSize}%`;
+        node.style.height = `${finalSize/PARAMETERS.graphRatio}%`;
+        node.style.paddingTop = `${padding/PARAMETERS.graphRatio}%`;
+        node.style.paddingBottom = `${padding/PARAMETERS.graphRatio}%`;
+        node.style.paddingLeft = `${padding}%`;
+        node.style.paddingRight = `${padding}%`;
     });
     icon.src = poem.icon;
     node.appendChild(icon);
@@ -238,10 +249,10 @@ function addPoem(poem) {
         POEMS.forEach((_poem) => {
             if (_poem.id != edge) return;
             let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("x1", `${poem.position.x}%`);
-            line.setAttribute("y1", `${poem.position.y}%`);
-            line.setAttribute("x2", `${_poem.position.x}%`);
-            line.setAttribute("y2", `${_poem.position.y}%`);
+            line.setAttribute("x1", graphCoordinateX(poem.position.x));
+            line.setAttribute("y1", graphCoordinateY(poem.position.y));
+            line.setAttribute("x2", graphCoordinateX(_poem.position.x));
+            line.setAttribute("y2", graphCoordinateY(_poem.position.y));
             line.setAttribute("stroke", "rgba(255,255,255,0.4)");
             line.setAttribute("stroke-width", "2");
             edges.appendChild(line);
@@ -249,10 +260,50 @@ function addPoem(poem) {
     });
 };
 
+function applyLayout() {
+    // Use visualViewport when available (most reliable on mobile Chrome),
+    // falling back to documentElement.clientWidth (excludes scrollbars, more stable than innerWidth).
+    const vp = window.visualViewport;
+    const vpWidth  = vp ? vp.width  : document.documentElement.clientWidth;
+    const vpHeight = vp ? vp.height : document.documentElement.clientHeight;
+
+    const base = Math.max(vpWidth, vpHeight / PARAMETERS.graphRatio);
+
+    // Clamp to [minPx, maxPx]
+    const graphPx = Math.max(LAYOUT.minPx, Math.min(LAYOUT.maxPx, base * 0.98));
+
+    graph.style.width  = `${graphPx}px`;
+    graph.style.height = `${graphPx * PARAMETERS.graphRatio}px`;
+
+    // Expose a CSS custom property for UI elements to optionally scale up
+    const uiScale = graphPx > LAYOUT.uiScaleBreak
+        ? 1 + (graphPx - LAYOUT.uiScaleBreak) / LAYOUT.uiScaleBreak * 1.3
+        : 1;
+    document.documentElement.style.setProperty('--ui-scale', uiScale.toFixed(3));
+
+    // Wait for the browser to reflow with the new sizes before computing scroll position.
+    // requestAnimationFrame fires after the next paint, when scrollWidth/Height are correct.
+    requestAnimationFrame(() => {
+        window.scrollTo({
+            left: (document.body.scrollWidth  - vpWidth)  / 2,
+            top:  (document.body.scrollHeight - vpHeight) / 2,
+            behavior: 'instant'
+        });
+    });
+}
 
 window.onload = () => {
     POEMS.forEach((poem) => addPoem(poem));
+    // Defer the first layout to the next animation frame so the browser has
+    // finished its initial paint and viewport dimensions have settled.
+    requestAnimationFrame(applyLayout);
 };
+
+window.addEventListener('resize', applyLayout);
+// Also re-apply when the virtual viewport changes (mobile URL bar appearing/hiding)
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', applyLayout);
+}
 
 
 // TOP BUTTONS 

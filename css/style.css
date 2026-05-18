@@ -11,6 +11,7 @@
   --form: rgb(40, 40, 40);
   --form-focus: rgb(50, 50, 50);
   --button-text: whitesmoke;
+  --ui-scale: 1; /* Updated dynamically by JS on large screens */
 }
 
 body {
@@ -75,7 +76,8 @@ a {
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(var(--ui-scale));
+  transform-origin: top center;
   display: flex;
   gap: 20px;
   z-index: 10;
@@ -152,32 +154,51 @@ a {
   transform: translateY(1px);
 }
 
-/* Bottom Links and Credits */
-.bottom-left-links {
+/* Footer bar */
+.site-footer {
   position: fixed;
-  bottom: 20px;
-  left: 40px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 12px 40px;
+  flex-wrap: wrap;
+  gap: 4px;
+  pointer-events: none; /* let clicks through to graph below */
 }
 
-.bottom-left-links a {
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
+.footer-left,
+.footer-right {
+  pointer-events: auto;
   font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+.footer-left a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.bottom-left-links a:hover {
+.footer-left a:hover {
   color: white;
 }
 
-.bottom-right-credits {
-  position: fixed;
-  bottom: 20px;
-  right: 40px;
-  z-index: 10;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 14px;
+/* On very narrow screens, stack them centered */
+@media (max-width: 480px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 8px 20px;
+    gap: 2px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
 }
 
 /* Modal Window */
@@ -283,13 +304,9 @@ a {
 --------------------------------- */
 #graph-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  /* width and height are now managed dynamically by javascript */
   z-index: 1;
   /* Below top buttons (10) and modal (1000) */
-  overflow: hidden;
 }
 
 /* Edges Layer (SVG) */
