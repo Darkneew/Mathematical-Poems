@@ -423,7 +423,7 @@ a {
 }
 
 .poem-text {
-  white-space: pre-line;
+  white-space: pre-wrap;
   font-size: 1.15rem;
   line-height: 2.2;
   text-align: left;

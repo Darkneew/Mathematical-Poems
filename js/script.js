@@ -85,7 +85,10 @@ const edges = document.getElementById("graph-edges");
 
 function getTranslatedPoemHTML(poem) {
     const content = poem.isImage ? `<img src="${poem.translatedText}" alt="Poem: ${poem.translatedObject}" class="img-fluid poem-image">` : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.translatedText}</p></div>`;
-    const extra = poem.image ? `<div class="mt-5 w-100"> <img src="${poem.image}" alt="Image: ${poem.translatedObject}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${poem.imageCredit} </p> </div>` : "";
+    let extra = "";
+    poem.images.forEach(image => {
+        extra += `<div class="mt-5 w-100"> <img src="${image.link}" alt="Image: ${poem.translatedObject}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`
+    });
     return `
         <div class="row mb-5">
             <div class="col-2"></div>
@@ -122,10 +125,7 @@ function getTranslatedPoemHTML(poem) {
 };
 
 function getOriginalPoemHTML(poem) {
-    const content = poem.isImage ? `<img src="${poem.text}" alt="Poem: ${poem.object}" class="img-fluid poem-image">` : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.text}</p></div>`;
-    const extra = poem.image ? `<div class="mt-5 w-100"> <img src="${poem.image}" alt="Image: ${poem.object}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${poem.imageCredit} </p> </div>` : "";
-    return `
-        <div class="row mb-5">
+    const translateButton = poem.translatedObject? `<div class="row mb-5">
             <div class="col-2"></div>
             <div class="col-8">
                 <button class="poem-translate-btn" onclick="translatePoem(false, '${poem.id}')">
@@ -133,8 +133,14 @@ function getOriginalPoemHTML(poem) {
                 </button>
             </div>
             <div class="col-2"></div>
-        </div>
-
+        </div>` : "";
+    const content = poem.isImage ? `<img src="${poem.text}" alt="Poem: ${poem.object}" class="img-fluid poem-image">` : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.text}</p></div>`;
+    let extra = "";
+    poem.images.forEach(image => {
+        extra += `<div class="mt-5 w-100"> <img src="${image.link}" alt="Image: ${poem.object}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`
+    });
+    return `
+        ${translateButton}
         <div class="poem-body mb-5 text-center">
             ${content}
         </div>
@@ -331,7 +337,7 @@ if (btnList) {
                 ${POEMS.map((poem) => `
                     <button class="poem-list-item" onclick="openPoem('${poem.id}')">
                         <div class="poem-list-content">
-                            <span class="poem-list-title">${poem.translatedObject}</span>
+                            <span class="poem-list-title">${poem.translatedObject? poem.translatedObject : poem.object}</span>
                             <span class="poem-list-author"><i class="bi bi-person-fill"></i> ${poem.author}</span>
                         </div>
                         <i class="bi bi-chevron-right poem-list-arrow"></i>
