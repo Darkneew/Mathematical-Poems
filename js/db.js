@@ -157,7 +157,7 @@ You have cast into space the greatest love story.`,
     "translatedObject":"Big Bang",
     "wikipedia":"https://fr.wikipedia.org/wiki/Big_Bang",
     "translatedWikipedia":"https://en.wikipedia.org/wiki/Big_Bang",
-    "author":"Isabelle Drocourt",
+    "author":"Isabelle Teyssier-Matrot",
     "translator":"Léo Buisine",
     "id":"bigbang",
     "edges":["fusion","infinity2","redshift","zero"]
