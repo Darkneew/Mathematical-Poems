@@ -48,6 +48,10 @@ a {
   background-color: transparent;
 }
 
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 /* Background */
 #main-bg {
   position: fixed;
