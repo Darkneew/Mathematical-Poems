@@ -270,7 +270,7 @@ function addPoem(poem) {
     });
 };
 
-function applyLayout() {
+function applyLayout(scroll) {
     // Use visualViewport when available (most reliable on mobile Chrome),
     // falling back to documentElement.clientWidth (excludes scrollbars, more stable than innerWidth).
     const vp = window.visualViewport;
@@ -293,7 +293,7 @@ function applyLayout() {
 
     // Wait for the browser to reflow with the new sizes before computing scroll position.
     // requestAnimationFrame fires after the next paint, when scrollWidth/Height are correct.
-    requestAnimationFrame(() => {
+    if (scroll) requestAnimationFrame(() => {
         const scrollContainer = document.getElementById('scroll-container');
         const scroller = scrollContainer || window;
         const scrollW = scrollContainer ? scrollContainer.scrollWidth : document.body.scrollWidth;
@@ -311,13 +311,13 @@ window.onload = () => {
     POEMS.forEach((poem) => addPoem(poem));
     // Defer the first layout to the next animation frame so the browser has
     // finished its initial paint and viewport dimensions have settled.
-    requestAnimationFrame(applyLayout);
+    requestAnimationFrame(()=>applyLayout(true));
 };
 
-window.addEventListener('resize', applyLayout);
+window.addEventListener('resize', ()=>applyLayout(false));
 // Also re-apply when the virtual viewport changes (mobile URL bar appearing/hiding)
 if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', applyLayout);
+    window.visualViewport.addEventListener('resize', ()=>applyLayout(false));
 }
 
 
