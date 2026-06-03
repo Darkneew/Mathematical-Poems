@@ -26,4 +26,4 @@ Disallow: /
 User-agent: FacebookBot
 Disallow: /
 
-Sitemap: https://www.eleves.ens.fr/home/lbuisine/sitemap.xml
+Sitemap: https://mathematical-poetry.pages.dev/sitemap.xml
