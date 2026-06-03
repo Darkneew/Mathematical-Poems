@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="width: 100%; height: 100%;">
 
 <head>
     <meta charset="utf-8">
@@ -57,12 +57,13 @@
     </script>
 </head>
 
-<body>
+<body style="overflow: hidden; width: 100%; height: 100%; margin: 0; padding: 0;">
     <!-- Background -->
     <div id="main-bg"></div>
     <div id="bg-overlay"></div>
 
-    <main>
+    <div id="scroll-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: auto;">
+        <main>
         <!-- Top Navigation Buttons -->
         <div class="top-tabs-container">
             <button id="btn-list" class="nav-btn nav-tab" aria-label="List of poems" title="List of poems">
@@ -78,6 +79,7 @@
             <svg id="graph-edges" class="graph-edges-layer" width="100%" height="100%"></svg>
         </div>
     </main>
+    </div>
 
     <!-- Modal Window -->
     <div id="poem-modal" class="modal-overlay" aria-hidden="true">

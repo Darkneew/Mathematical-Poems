@@ -294,9 +294,14 @@ function applyLayout() {
     // Wait for the browser to reflow with the new sizes before computing scroll position.
     // requestAnimationFrame fires after the next paint, when scrollWidth/Height are correct.
     requestAnimationFrame(() => {
-        window.scrollTo({
-            left: (document.body.scrollWidth  - vpWidth)  / 2,
-            top:  (document.body.scrollHeight - vpHeight) / 2,
+        const scrollContainer = document.getElementById('scroll-container');
+        const scroller = scrollContainer || window;
+        const scrollW = scrollContainer ? scrollContainer.scrollWidth : document.body.scrollWidth;
+        const scrollH = scrollContainer ? scrollContainer.scrollHeight : document.body.scrollHeight;
+        
+        scroller.scrollTo({
+            left: (scrollW - vpWidth)  / 2,
+            top:  (scrollH - vpHeight) / 2,
             behavior: 'instant'
         });
     });
