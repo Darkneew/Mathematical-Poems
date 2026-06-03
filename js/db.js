@@ -226,21 +226,21 @@ Aime-moi ! Et quant à mon futur martèle-lui ton :
 « Je t’aime, je t’aime, je t’aime, je t’aime ».`,
     "translatedText":`Apeirophobia
 
-From the highest peaks I see a pair descend,
+Parked in the highest peaks I see a pair descend,
 Its sound? Just like snow during the grey interlude
-Unfathomable. Summoned, when divided
+Fathomless. Summoned, when divided
 After a sequence of sums (and who knows?), to break the odd
 
-Algorithmician, your dark computations flee
-(Muttering numbers that exceed the ceiling)
+Computer-operator, your dark computations flee
+(Mouthing numbers that exceed the ceiling)
 This weighs on me and I pray, in depths drowning
-The shadows of your well's deepest recesses are known to me.
+As the shadows of your well's deepest recesses are known to me.
 
-You could have, wicked one, fit in a flask !
+U could have, wicked one, fit in a flask !
 Love me without refrain, it sways my nights:
 I struggle with the task and pale at your height.
 
-You should have, I promise you, ended as a pretty theory!
+U should have, I promise you, ended as a pretty theory!
 Love me! and concerning my future hammer endlessly :
 "I love you, I love you, I love you, I love you…"`,
     "isImage": false,
