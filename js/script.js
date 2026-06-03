@@ -83,11 +83,29 @@ document.addEventListener('keydown', (e) => {
 const graph = document.getElementById("graph-container");
 const edges = document.getElementById("graph-edges");
 
+function getResponsiveImageHTML(src, alt, classes) {
+    if (!src || !src.includes('/webp/')) {
+        return `<img src="${src}" alt="${alt}" class="${classes}" loading="lazy" decoding="async">`;
+    }
+    const basePath = src.split("/webp/")[0];
+    const filename = src.split("/webp/")[1];
+    const srcset = `
+        ${basePath}/webp-320/${filename} 320w,
+        ${basePath}/webp-640/${filename} 640w,
+        ${basePath}/webp-800/${filename} 800w,
+        ${basePath}/webp-1200/${filename} 1200w,
+        ${basePath}/webp-1600/${filename} 1600w
+    `;
+    // Modal images take up mostly full width on small screens, and ~80% on large.
+    const sizes = "(max-width: 768px) 90vw, 80vw";
+    return `<img src="${src}" srcset="${srcset}" sizes="${sizes}" alt="${alt}" class="${classes}" loading="lazy" decoding="async">`;
+}
+
 function getTranslatedPoemHTML(poem) {
-    const content = poem.isImage ? `<img src="${poem.translatedText}" alt="Poem: ${poem.translatedObject}" class="img-fluid poem-image">` : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.translatedText}</p></div>`;
+    const content = poem.isImage ? getResponsiveImageHTML(poem.translatedText, `Poem: ${poem.translatedObject}`, "img-fluid poem-image") : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.translatedText}</p></div>`;
     let extra = "";
     poem.images.forEach(image => {
-        extra += `<div class="mt-5 w-100"> <img src="${image.link}" alt="Image: ${poem.translatedObject}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`
+        extra += `<div class="mt-5 w-100"> ${getResponsiveImageHTML(image.link, `Image: ${poem.translatedObject}`, "img-fluid w-100 rounded shadow-lg")} <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`
     });
     return `
         <div class="row mb-5">
@@ -134,10 +152,10 @@ function getOriginalPoemHTML(poem) {
             </div>
             <div class="col-2"></div>
         </div>` : "";
-    const content = poem.isImage ? `<img src="${poem.text}" alt="Poem: ${poem.object}" class="img-fluid poem-image">` : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.text}</p></div>`;
+    const content = poem.isImage ? getResponsiveImageHTML(poem.text, `Poem: ${poem.object}`, "img-fluid poem-image") : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.text}</p></div>`;
     let extra = "";
     poem.images.forEach(image => {
-        extra += `<div class="mt-5 w-100"> <img src="${image.link}" alt="Image: ${poem.object}" class="img-fluid w-100 rounded shadow-lg"> <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`
+        extra += `<div class="mt-5 w-100"> ${getResponsiveImageHTML(image.link, `Image: ${poem.object}`, "img-fluid w-100 rounded shadow-lg")} <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`
     });
     return `
         ${translateButton}
@@ -239,6 +257,25 @@ function addPoem(poem) {
     node.ariaLabel = `Poem: ${poem.object}`;
     let icon = document.createElement("img")
     icon.alt = poem.object;
+    icon.loading = "lazy";
+    icon.decoding = "async";
+
+    if (poem.icon && poem.icon.includes("/webp/")) {
+        const basePath = poem.icon.split("/webp/")[0];
+        const filename = poem.icon.split("/webp/")[1];
+        icon.srcset = `
+            ${basePath}/webp-64/${filename} 64w,
+            ${basePath}/webp-96/${filename} 96w,
+            ${basePath}/webp-128/${filename} 128w,
+            ${basePath}/webp-192/${filename} 192w,
+            ${basePath}/webp-256/${filename} 256w,
+            ${basePath}/webp-384/${filename} 384w,
+            ${poem.icon} 512w
+        `;
+        // Nodes are roughly 5-8% of the graph width (which caps at 1400px).
+        icon.sizes = "10vw";
+    }
+    
     icon.addEventListener('load', () => {
         const ratio = Math.max(icon.naturalWidth / icon.naturalHeight, icon.naturalHeight / icon.naturalWidth);
         // Calculate final size, bounded between 75px and 150px

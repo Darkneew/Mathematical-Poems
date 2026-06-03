@@ -59,10 +59,34 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/assets/misc/background.webp');
+  background-image: url('/assets/backgrounds/background-768.webp');
   background-size: cover;
   background-position: center;
   z-index: -2;
+}
+
+@media (min-width: 768px) {
+  #main-bg {
+    background-image: url('/assets/backgrounds/background-1280.webp');
+  }
+}
+
+@media (min-width: 1280px) {
+  #main-bg {
+    background-image: url('/assets/backgrounds/background-1920.webp');
+  }
+}
+
+@media (min-width: 1920px) {
+  #main-bg {
+    background-image: url('/assets/backgrounds/background-2560.webp');
+  }
+}
+
+@media (min-width: 2560px) {
+  #main-bg {
+    background-image: url('/assets/backgrounds/background-3000.webp');
+  }
 }
 
 #bg-overlay {
