@@ -15,3 +15,7 @@
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/js/db.js
+  ! Cache-Control
+  Cache-Control: public, max-age=0, must-revalidate
