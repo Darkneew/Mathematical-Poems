@@ -198,7 +198,7 @@ You have cast into space the greatest love story.`,
     "author":"Khalid EL Morabethi",
     "translator":"Khalid EL Morabethi",
     "id":"square",
-    "edges":["group","triangle","ptriple"]
+    "edges":["group","ptriple"]
 },
 {
     "position":{
