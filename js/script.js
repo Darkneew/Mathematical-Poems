@@ -102,7 +102,7 @@ function getResponsiveImageHTML(src, alt, classes) {
 }
 
 function getTranslatedPoemHTML(poem) {
-    const content = poem.isImage ? getResponsiveImageHTML(poem.translatedText, `Poem: ${poem.translatedObject}`, "img-fluid poem-image") : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.translatedText}</p></div>`;
+    const content = poem.isImage ? getResponsiveImageHTML(poem.translatedText, `Poem: ${poem.translatedObject}`, "img-fluid poem-image") : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.translatedText.replaceAll('\n', '<br>')}</p></div>`;
     let extra = "";
     poem.images.forEach(image => {
         extra += `<div class="mt-5 w-100"> ${getResponsiveImageHTML(image.link, `Image: ${poem.translatedObject}`, "img-fluid w-100 rounded shadow-lg")} <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`
@@ -152,7 +152,7 @@ function getOriginalPoemHTML(poem) {
             </div>
             <div class="col-2"></div>
         </div>` : "";
-    const content = poem.isImage ? getResponsiveImageHTML(poem.text, `Poem: ${poem.object}`, "img-fluid poem-image") : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.text}</p></div>`;
+    const content = poem.isImage ? getResponsiveImageHTML(poem.text, `Poem: ${poem.object}`, "img-fluid poem-image") : `<div class="d-flex justify-content-center"><p class="poem-text">${poem.text.replaceAll('\n', '<br>')}</p></div>`;
     let extra = "";
     poem.images.forEach(image => {
         extra += `<div class="mt-5 w-100"> ${getResponsiveImageHTML(image.link, `Image: ${poem.object}`, "img-fluid w-100 rounded shadow-lg")} <p class="text-end mt-2 mb-0" style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Image credit: ${image.credit} </p> </div>`

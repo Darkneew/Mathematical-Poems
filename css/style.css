@@ -452,6 +452,8 @@ a {
 
 .poem-text {
   white-space: pre-wrap;
+  tab-size: 8;
+  -moz-tab-size: 8;
   font-size: 1.15rem;
   line-height: 2.2;
   text-align: left;
