@@ -592,3 +592,20 @@ a {
 .poem-list-item:focus .poem-list-arrow {
   transform: translateX(5px);
 }
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+  }
+  .modal-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .modal-container::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+  }
+}
