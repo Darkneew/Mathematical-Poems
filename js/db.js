@@ -766,55 +766,75 @@ De son tunnel, il avait agité sa main
 Pour qu’elle le rejoigne au lendemain 
 Electron libre perdu dans un brouillard sans aile 
 Sans phare pour percer un trou du ciel 
-Il avait ancré son cœur et magnétisé 
-D’une flèche toute la mer illuminée 
 
+Du bord au large le plasma mirage traversa
+
+Il avait ancré son cœur magnétique de verre
+D’une flèche illuminée toute la mer
 A la dérive pour un arc-en-ciel ionisé 
+D’électrochocs à l’âme l’effraction pénétrée 
+
+Céleste solaire au récif terre émergea 
 
 L’accès par la passe en S au contour des flots
 Siffla sur son vaisseau
-La collision nucléaire, la fission du mat
+La collision chaleur à la fission du mat
 D’une voix le brisa
 
-Céleste solaire au récif terre émergea
+Céleste solaire au nadir rouge s’envola
 
 Au-delà d’elle, il avait louvoyé sans fin
 Pour qu’elle lui témoigne sous toile de lin
 Sa chaleur sous atmosphère son trait d’art pêle-mêle
-Le cap, ses couleurs, ses ondes charnelles
+Le cap sur ses couleurs et ses ondes charnelles
+
+Céleste lionne au plasma brûlant renaîtra 
+
 Il avait lié cœur contre elle entre ses mains 
 Ejecté raies dans les airs marins 
+Sous les bombes au climat d’énergie chaotique 
+Céleste crie sur l’hélice amniotique
 
-Cent mille un dugong né de l’énergie du grain`,
-    "translatedText":`The way back to meanders by the waters' attraction
-To the core from the constellations
-Echoed through the depths of its magma
-When rammed a gondola
+Cent mille un dugong né de l’énergie du grain `,
+    "translatedText":`The return to the meander through the attraction of the waters
+From the stars to the nucleus
+Echoed in the depths of its magma
+When a boat struck 
 
-From coast to open sea will be reborned the mirage-plasma
+From shore to open sea, the plasma mirage will be reborn
 
-From his tunnel, with his hand he gestured
-So she could join him afterward
-Free electron lost in a mist without wing
-Without lighthouse to pierce a hole of the welkin
-He had anchored his heart and magnetized
-With one arrow all of the sea illuminated
+From his tunnel, he had waved his hand
+So that she could join him the day after
+Free electron lost in a wingless mist
+Without lighthouse to pierce a hole of the sky
 
-Adrift for a rainbow that had been ionized 
+From the shore to the open sea, the mirage plasma crossed
 
-The access through the S-shaped pass at the tide's edge
-Hissed against his barge
-The nuclear collision, the mast's fission
-broke him with a single expression
+He had anchored his magnetic heart of glass
+With an arrow illuminating the whole sea,
+Drifting for an ionized rainbow
+With electroshocks penetrating the soul
 
-Solar celestial at the earth reef made an apparition
+Céleste solar at the reef earth emerged
 
-Beyond her he had tacked again and again
-So she might profess under cloth of linen
-Her heat under atmosphere her art stroke accidental
-The heading, her colours, her waves carnal
+The access through the passe en S at the contour of the waves
+Hissed against his vessel
+The nuclear collision at the fission of the mast
+In a voice shattered it
+
+Céleste solar at the red nadir took flight
+
+Beyond her, he had tacked endlessly
+So she might testify under linen canvas
+Her heat under atmosphere her jumbled art stroke
+Focusing on her colors and her sensual energy
+
+Céleste lioness with burning plasma will be reborn
+
 He had bound heart against her within his hands
-Into the sea airs ejected strands
+Ejected rays into the marine air
+Under the bombs in the chaotic energy climate
+Céleste cries out on the amniotic helix
 
 One hundred thousand and one dugongs born from the energy of the grain`,
     "isImage": false,
@@ -826,7 +846,7 @@ One hundred thousand and one dugongs born from the energy of the grain`,
     "wikipedia":"https://fr.wikipedia.org/wiki/Fusion_nucl%C3%A9aire",
     "translatedWikipedia":"https://en.wikipedia.org/wiki/Nuclear_fusion",
     "author":"Stéphanie Nguyen",
-    "translator":"Léo Buisine",
+    "translator":"Stéphanie Nguyen, Léo Buisine",
     "id":"fusion",
     "edges":[]
 },
