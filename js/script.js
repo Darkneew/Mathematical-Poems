@@ -351,10 +351,23 @@ window.onload = () => {
     requestAnimationFrame(()=>applyLayout(true));
 };
 
-window.addEventListener('resize', ()=>applyLayout(false));
+// Debounce helper: waits `delay` ms after the last call before firing.
+// This prevents applyLayout from being called hundreds of times per second
+// while the user is pinch-zooming on mobile.
+function debounce(fn, delay) {
+    let timer = null;
+    return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+const debouncedApplyLayout = debounce(() => applyLayout(false), 150);
+
+window.addEventListener('resize', debouncedApplyLayout);
 // Also re-apply when the virtual viewport changes (mobile URL bar appearing/hiding)
 if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', ()=>applyLayout(false));
+    window.visualViewport.addEventListener('resize', debouncedApplyLayout);
 }
 
 
