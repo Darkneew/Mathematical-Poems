@@ -778,7 +778,7 @@ Céleste solaire au récif terre émergea
 
 L’accès par la passe en S au contour des flots
 Siffla sur son vaisseau
-La collision chaleur à la fission du mat
+La collision nucléaire à la fission du mat
 D’une voix le brisa
 
 Céleste solaire au nadir rouge s’envola
