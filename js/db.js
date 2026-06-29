@@ -183,8 +183,8 @@ You have cast into space the greatest love story.`,
 },
 {
     "position":{
-        "x":535,
-        "y":120
+        "x":500,
+        "y":95
     },
     "text": `Servir de la soupe aux choux à un cerveau qui n’a toujours pas compris qu’il faut que je me cogne la tête contre le mur, mais pas n’importe lequel, pas pour le plaisir, mais comme une sorte de prière, en fait comme si j’avais reçu trop d’amour que je ne méritais pas, alors je me cogne la tête contre un mur rouge, encore ! trois fois, trente fois, mais ce n’est pas suffisant, et je ne dois pas fermer les yeux face à cette sensation, face à cette action, c’est mon mécanisme complexe, lié à la torture de ma machine à coudre. Je ne dois laisser personne me distraire ou mettre de la pitié sur mon épaule, il faut me laisser faire, je ne vais pas me tuer, je ne suis pas fou, c’est juste que je ne veux pas être mou, je me cogne contre le troisième mur de mon kidnappeur imaginaire. Une tête sans pansement est un morceau de papier emporté par le courant d’air. Il faut que je me réveille rempli de cailloux et sans mémoire, Il faut que quand j’ouvre les yeux, je me trouve au milieu de la mer, en train de construire des couloirs. Il est trois heures du matin, dans une heure je me cognerai la tête contre le mur, j’attends cette belle douleur, je me suis promis un bouquet de fleur.`,
     "translatedText":`Serving cabbage soup to a brain that still hasn't understood that I need to hit my head against the wall, but not just any wall, not for fun, but as a kind of prayer, in fact as if I'd received too much love that I didn't deserve, so I hit my head against a red wall, again! three times, thirty times, but it's not enough, and I mustn't close my eyes in the face of this sensation, in the face of this action, It's my complex mechanism, linked to the torture of my sewing machine. I mustn't let anyone distract me or put pity on my shoulder, you have to let me do it, i'm n o t g o i n g to k i l l m y s e l f, I'm not crazy, I just don't want to be soft. I'm hitting the third wall of my imaginary kidnapper. A head without a bandage is a piece of paper blown away by the wind. I've got to wake up full of pebbles and no memory, I have to open my eyes and find myself in the middle of the sea, building corridors. It's three in the morning, in an hour I'll be hitting my head against the wall, I'm waiting for that beautiful pain, I promised myself a bouquet of flowers.`,
@@ -474,6 +474,31 @@ Just a line`,
 },
 {
     "position":{
+        "x":685,
+        "y":230
+    },
+    "text": `Un nous est fait d'un toi et moi :
+Une simple et belle addition.
+Un moi sans toi, ça donne quoi ?
+Qui peut trouver la solution ?`,
+    "translatedText":`A you and a me makes a we:
+A true and simple addition.
+Take away you, what’s left of me?
+Who can compute the solution?`,
+    "isImage": false,
+    "images": [],
+    "icon": "./assets/latex/webp/two.webp",
+    "object":"Deux",
+    "translatedObject":"Two",
+    "wikipedia":"https://fr.wikipedia.org/wiki/2_(nombre)",
+    "translatedWikipedia":"https://en.wikipedia.org/wiki/2",
+    "author":"Chloé Gallien",
+    "translator":"Chloé Gallien, Léo Buisine",
+    "id":"two",
+    "edges":["prime","unit"]
+},
+{
+    "position":{
         "x":835,
         "y":535
     },
@@ -503,8 +528,8 @@ Only its collapse.`,
 },
 {
     "position":{
-        "x":550,
-        "y":370
+        "x":530,
+        "y":390
     },
     "text": `Présent dans ce monde, 
 Elle empêche la planète d’être ronde. 
@@ -696,7 +721,7 @@ Shelter the incandescent rain.`,
 {
     "position":{
         "x":795,
-        "y":240
+        "y":270
     },
     "text": `La farandole des <i>i</i>, <i>e</i>, π détrône -1.
 Quels sont ces nombres, dont l’alliance a un pouvoir ainsi décuplé ?
@@ -1098,8 +1123,8 @@ slow-ly quilt around infinity.`,
 },
 {
     "position":{
-        "x":665,
-        "y":190
+        "x":600,
+        "y":150
     },
     "text": `Invisibles architectes, éparpillés dans l’infini, 
 ils combinent les bits, livrent des clés, sécurisent nos données.
@@ -1989,7 +2014,7 @@ Discrete and harmonious, my ingenuity lies at the heart of machines.`,
 },
 {
     "position":{
-        "x":650,
+        "x":740,
         "y":35
     },
     "text": `Un philosophe sur son île,
@@ -2087,8 +2112,8 @@ straight but not as a ramrod.`,
 },
 {
     "position":{
-        "x":705,
-        "y":310
+        "x":655,
+        "y":340
     },
     "text": `Un atome c'est certes peu
 Mais si vous en ajoutez deux
