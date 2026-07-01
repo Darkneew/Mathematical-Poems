@@ -477,10 +477,10 @@ Just a line`,
         "x":685,
         "y":230
     },
-    "text": `Un nous est fait d'un toi et moi :
+    "text": `Un nous est fait d'un toi et moi :
 Une simple et belle addition.
-Un moi sans toi, ça donne quoi ?
-Qui peut trouver la solution ?`,
+Un moi sans toi, ça donne quoi ?
+Qui peut trouver la solution ?`,
     "translatedText":`A you and a me makes a we:
 A true and simple addition.
 Take away you, what’s left of me?
